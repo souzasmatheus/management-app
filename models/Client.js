@@ -8,7 +8,7 @@ const ClientSchema = new Schema({
         required: true
     },
     document: {
-        type: Number,
+        type: String,
         required: true
     },
     birthday: {
@@ -16,6 +16,10 @@ const ClientSchema = new Schema({
         required: true
     },
     sex: {
+        type: String,
+        required: true
+    },
+    cuty: {
         type: String,
         required: true
     },

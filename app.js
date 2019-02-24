@@ -1,5 +1,6 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
+const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 
 const app = express()
@@ -23,6 +24,10 @@ app.engine('handlebars', exphbs({
 }))
 app.set('view engine', 'handlebars')
 
+// Body Parser Middleware
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json())
+
 // History Route
 app.get('/', (req, res) => {
     const title = 'History'
@@ -36,6 +41,12 @@ app.get('/client', (req, res) => {
     res.render('client', {
         title: 'add client'
     })
+})
+
+// Process Form
+app.post('/client', (req, res) => {
+    console.log(req.body)
+    res.send('ok')
 })
 
 const port = 5000
