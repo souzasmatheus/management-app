@@ -1,7 +1,17 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
+const mongoose = require('mongoose')
 
 const app = express()
+
+const dataBase = 'mongodb://localhost/management'
+
+// Connect to mongoose
+mongoose.connect(dataBase, {
+    useNewUrlParser: true
+})
+    .then(() => console.log('MongoDB connected...'))
+    .catch((err) => console.log(err))
 
 // Handlebars Middleware
 app.engine('handlebars', exphbs({
