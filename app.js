@@ -23,17 +23,18 @@ app.engine('handlebars', exphbs({
 }))
 app.set('view engine', 'handlebars')
 
-// Index Route
+// History Route
 app.get('/', (req, res) => {
-    const title = 'Welcome'
+    const title = 'History'
     res.render('index', {
         title
     })
 })
 
+// Clients Register
 app.get('/client', (req, res) => {
     res.render('client', {
-        title: 'client'
+        title: 'add client'
     })
 })
 

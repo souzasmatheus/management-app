@@ -1,1 +1,86 @@
-<h1>{{title}}</h1>
+<div class="row justify-content-lg-center">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header bg-dark">
+                <p class="text-uppercase text-center m-0 text-light">Cadastro do cliente</p>
+            </div>
+            <div class="card-body">
+                <form action="/client" method="post">
+                    <div class="form-group">
+                        <label for="name">Nome</label>
+                        <input type="text" name="name" class="form-control" placeholder="Ex.: jlm_contato@hotmail.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="document">Documento</label>
+                        <input type="text" name="document" class="form-control" placeholder="Ex.: 051.859.810-16">
+                    </div>
+                    <div class="form-row mb-3">
+                        <div class="col">
+                            <label for="birthday">Birthday</label>
+                            <input type="date" name="birthday" class="form-control">
+                        </div>
+                        <div class="col">
+                            <label for="sex">Sexo</label>
+                            <select class="form-control" name="sex">
+                                <option>Masculino</option>
+                                <option>Feminino</option>
+                                <option disabled="disabled">Não existe outro</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Endereço</label>
+                        <input type="text" name="address" class="form-control" placeholder="Ex.: Rua dos Bobos, 0">
+                    </div>
+                    <div class="form-row mb-3">
+                        <div class="col">
+                            <label for="city">Cidade</label>
+                            <input type="text" name="city" class="form-control">
+                        </div>
+                        <div class="col">
+                            <label for="state">Estado</label>
+                            <select size="1" class="form-control" name="state">
+                                <option>AC</option>
+                                <option>AL</option>
+                                <option>AP</option>
+                                <option>AM</option>
+                                <option>BA</option>
+                                <option>CE</option>
+                                <option>DF</option>
+                                <option>ES</option>
+                                <option>GO</option>
+                                <option>MA</option>
+                                <option>MT</option>
+                                <option>MS</option>
+                                <option>MG</option>
+                                <option>PA</option>
+                                <option>PB</option>
+                                <option>PR</option>
+                                <option>PE</option>
+                                <option>PI</option>
+                                <option>RJ</option>
+                                <option>RN</option>
+                                <option>RS</option>
+                                <option>RO</option>
+                                <option>RR</option>
+                                <option>SC</option>
+                                <option>SP</option>
+                                <option>SE</option>
+                                <option>TO</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="number">Telefone</label>
+                        <input type="text" name="number" class="form-control" placeholder="Ex.: 22123456789">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" name="email" class="form-control" placeholder="Ex.: 123@gmail.com">
+                    </div>
+                    <button type="submit" class="btn btn-success float-right">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
