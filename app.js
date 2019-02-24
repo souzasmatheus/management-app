@@ -13,6 +13,10 @@ mongoose.connect(dataBase, {
     .then(() => console.log('MongoDB connected...'))
     .catch((err) => console.log(err))
 
+// Load Client Model
+require('./models/Client')
+const Client = mongoose.model('clients')
+
 // Handlebars Middleware
 app.engine('handlebars', exphbs({
     defaultLayout: 'main'
