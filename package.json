@@ -1,0 +1,17 @@
+{
+  "name": "management-app",
+  "version": "1.0.0",
+  "description": "App to manage guests",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Matheus Souza",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.1",
+    "mongoose": "^5.4.15"
+  }
+}
