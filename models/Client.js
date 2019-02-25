@@ -19,7 +19,7 @@ const ClientSchema = new Schema({
         type: String,
         required: true
     },
-    cuty: {
+    city: {
         type: String,
         required: true
     },

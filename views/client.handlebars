@@ -8,20 +8,20 @@
                 <form action="/client" method="post">
                     <div class="form-group">
                         <label for="name">Nome</label>
-                        <input type="text" name="name" class="form-control" placeholder="Ex.: jlm_contato@hotmail.com">
+                        <input type="text" name="name" class="form-control" placeholder="Ex.: João Silva" required>
                     </div>
                     <div class="form-group">
                         <label for="document">Documento</label>
-                        <input type="text" name="document" class="form-control" placeholder="Ex.: 051.859.810-16">
+                        <input type="text" name="document" class="form-control" placeholder="Ex.: 051.859.810-16" required>
                     </div>
                     <div class="form-row mb-3">
                         <div class="col">
                             <label for="birthday">Birthday</label>
-                            <input type="date" name="birthday" class="form-control">
+                            <input type="date" name="birthday" class="form-control" required>
                         </div>
                         <div class="col">
                             <label for="sex">Sexo</label>
-                            <select class="form-control" name="sex">
+                            <select class="form-control" name="sex" required>
                                 <option>Masculino</option>
                                 <option>Feminino</option>
                                 <option disabled="disabled">Não existe outro</option>
@@ -30,16 +30,16 @@
                     </div>
                     <div class="form-group">
                         <label for="address">Endereço</label>
-                        <input type="text" name="address" class="form-control" placeholder="Ex.: Rua dos Bobos, 0">
+                        <input type="text" name="address" class="form-control" placeholder="Ex.: Rua dos Bobos, 0"  required>
                     </div>
                     <div class="form-row mb-3">
                         <div class="col">
                             <label for="city">Cidade</label>
-                            <input type="text" name="city" class="form-control">
+                            <input type="text" name="city" class="form-control"  required>
                         </div>
                         <div class="col">
                             <label for="state">Estado</label>
-                            <select size="1" class="form-control" name="state">
+                            <select size="1" class="form-control" name="state"  required>
                                 <option>AC</option>
                                 <option>AL</option>
                                 <option>AP</option>
@@ -72,11 +72,11 @@
                     </div>
                     <div class="form-group">
                         <label for="number">Telefone</label>
-                        <input type="text" name="number" class="form-control" placeholder="Ex.: 22123456789">
+                        <input type="text" name="number" class="form-control" placeholder="Ex.: 22123456789" required>
                     </div>
                     <div class="form-group">
                         <label for="email">E-mail</label>
-                        <input type="email" name="email" class="form-control" placeholder="Ex.: 123@gmail.com">
+                        <input type="email" name="email" class="form-control" placeholder="Ex.: jlm_contato@hotmail.com" required>
                     </div>
                     <button type="submit" class="btn btn-success float-right">Cadastrar</button>
                 </form>

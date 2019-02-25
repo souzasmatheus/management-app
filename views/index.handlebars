@@ -1,1 +1,43 @@
-<h1>Index</h1>
+{{#each clients}}
+<div class="card mb-3">
+    <div class="card-header bg-dark">
+        <p class="text-uppercase text-center m-0 text-light">{{name}}</p>
+    </div>
+    <div class="card-body pt-0 pb-0">
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Documento</th>
+                        <th scope="col">E-mail</th>
+                        <th scope="col">Nascimento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{document}}</td>
+                        <td>{{email}}</td>
+                        <td>{{birthday}}</td>
+                    </tr>
+                </tbody>
+                <thead>
+                    <tr>
+                        <th scope="col">Sexo</th>
+                        <th scope="col">Cidade</th>
+                        <th scope="col">Telefone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{sex}}</td>
+                        <td>{{city}}, {{state}}</td>
+                        <td>{{number}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{{else}}
+<p>Você ainda não cadastrou nenhum cliente</p>
+{{/each}}

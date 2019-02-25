@@ -30,23 +30,40 @@ app.use(bodyParser.json())
 
 // History Route
 app.get('/', (req, res) => {
-    const title = 'History'
-    res.render('index', {
-        title
-    })
+    Client.find({})
+        .then(clients => {
+            res.render('index', {
+                clients
+            })
+        })
 })
 
 // Clients Register
 app.get('/client', (req, res) => {
-    res.render('client', {
-        title: 'add client'
-    })
+    res.render('client')
 })
 
 // Process Form
 app.post('/client', (req, res) => {
-    console.log(req.body)
-    res.send('ok')
+    const{name, document, birthday,
+    sex, address, city, state, number, email} = req.body
+    const newClient = {
+        name,
+        document,
+        birthday,
+        sex,
+        address,
+        city,
+        state,
+        number,
+        email
+    }
+
+    new Client(newClient)
+        .save()
+        .then(client => {
+            res.redirect('/')
+        })
 })
 
 const port = 5000
