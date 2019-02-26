@@ -5,7 +5,7 @@
                 <p class="text-uppercase text-center m-0 text-light">Cadastro do cliente</p>
             </div>
             <div class="card-body">
-                <form action="/client" method="post">
+                <form action="/client/add" method="post" onkeydown="this.submit()">
                     <div class="form-group">
                         <label for="name">Nome</label>
                         <input type="text" name="name" class="form-control" placeholder="Ex.: João Silva" required>

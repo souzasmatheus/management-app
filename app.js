@@ -39,12 +39,12 @@ app.get('/', (req, res) => {
 })
 
 // Clients Register
-app.get('/client', (req, res) => {
-    res.render('client')
+app.get('/client/add', (req, res) => {
+    res.render('client/add')
 })
 
 // Process Form
-app.post('/client', (req, res) => {
+app.post('/client/add', (req, res) => {
     const{name, document, birthday,
     sex, address, city, state, number, email} = req.body
     const newClient = {
