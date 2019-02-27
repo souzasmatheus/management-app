@@ -1,7 +1,16 @@
 {{#each clients}}
 <div class="card mb-3">
     <div class="card-header bg-dark">
-        <p class="text-uppercase text-center m-0 text-light">{{name}}</p>
+        <div class="row">
+            <div class="col">
+                <p class="text-uppercase text-center m-0 text-light">{{name}}</p>
+            </div>
+           
+        <div class="col-lg-3 ml-auto">
+            <a href="/client/edit" class="btn btn-secondary btn-block">Edit</a>
+        </div> 
+        </div>
+        
     </div>
     <div class="card-body pt-0 pb-0">
         <div class="row">
