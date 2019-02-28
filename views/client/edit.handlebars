@@ -5,19 +5,20 @@
                 <p class="text-uppercase text-center m-0 text-light">Editar informações de <span class="h5">{{client.name}}</span></p>
             </div>
             <div class="card-body">
-                <form action="/client" method="post">
+                <form action="/client/{{client.id}}?_method=PUT" method="post">
+                    <input type="hidden" name="_method" value="PUT" />
                     <div class="form-group">
                         <label for="address">Endereço</label>
-                        <input type="text" name="address" class="form-control" value="{{client.address}}"  required>
+                        <input type="text" name="address" class="form-control" value="{{client.address}}">
                     </div>
                     <div class="form-row mb-3">
                         <div class="col">
                             <label for="city">Cidade</label>
-                            <input type="text" name="city" class="form-control" value="{{client.city}}"  required>
+                            <input type="text" name="city" class="form-control" value="{{client.city}}">
                         </div>
                         <div class="col">
                             <label for="state">Estado</label>
-                            <select size="1" class="form-control" name="state"  required>
+                            <select size="1" class="form-control" name="state">
                                 <option>AC</option>
                                 <option>AL</option>
                                 <option>AP</option>
@@ -50,11 +51,11 @@
                     </div>
                     <div class="form-group">
                         <label for="number">Telefone</label>
-                        <input type="text" name="number" class="form-control" value="{{client.number}}" required>
+                        <input type="text" name="number" class="form-control" value="{{client.number}}">
                     </div>
                     <div class="form-group">
                         <label for="email">E-mail</label>
-                        <input type="email" name="email" class="form-control" value="{{client.email}}" required>
+                        <input type="email" name="email" class="form-control" value="{{client.email}}">
                     </div>
                     <div class="float-right">
                         <a href="/" class="btn btn-danger mr-2 ">Cancelar</a>

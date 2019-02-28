@@ -2,6 +2,7 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+const methodOverride = require('method-override')
 
 const app = express()
 
@@ -27,6 +28,9 @@ app.set('view engine', 'handlebars')
 // Body Parser Middleware
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
+
+// Method Override Middleware
+app.use(methodOverride('_method'))
 
 // History Route
 app.get('/', (req, res) => {
@@ -66,6 +70,7 @@ app.post('/client/add', (req, res) => {
         })
 })
 
+// Clients Info Edit
 app.get('/client/edit/:id', (req, res) => {
     Client.findOne({
         _id: req.params.id
@@ -74,6 +79,26 @@ app.get('/client/edit/:id', (req, res) => {
             res.render('client/edit', {
                 client
             })
+        })
+})
+
+// Process Edit Form
+app.put('/client/:id', (req, res) => {
+
+    Client.findOne({
+        _id: req.params.id
+    })
+        .then(client => {
+            client.address = req.body.address
+            client.city = req.body.city
+            client.state = req.body.state
+            client.number = req.body.number
+            client.email = req.body.email
+
+            client.save()
+                .then(client => {
+                    res.redirect('/')
+                })
         })
 })
 

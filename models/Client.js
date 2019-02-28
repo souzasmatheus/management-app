@@ -4,40 +4,31 @@ const Schema = mongoose.Schema
 // Create Schema
 const ClientSchema = new Schema({
     name: {
-        type: String,
-        required: true
+        type: String
     },
     document: {
-        type: String,
-        required: true
+        type: String
     },
     birthday: {
-        type: String,
-        required: true
+        type: String
     },
     sex: {
-        type: String,
-        required: true
+        type: String
     },
     address: {
-        type: String,
-        required: true
+        type: String
     },
     city: {
-        type: String,
-        required: true
+        type: String
     },
     state: {
-        type: String,
-        required: true
+        type: String
     },
     number: {
-        type: Number,
-        required: true
+        type: Number
     },
     email: {
-        type: String,
-        required: true
+        type: String
     }
 })
 
