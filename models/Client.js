@@ -29,6 +29,10 @@ const ClientSchema = new Schema({
     },
     email: {
         type: String
+    },
+    date: {
+        type: Date,
+        default: Date.now
     }
 })
 

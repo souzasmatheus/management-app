@@ -35,6 +35,7 @@ app.use(methodOverride('_method'))
 // History Route
 app.get('/', (req, res) => {
     Client.find({})
+        .sort({date: -1})
         .then(clients => {
             res.render('index', {
                 clients
