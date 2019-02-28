@@ -66,6 +66,17 @@ app.post('/client/add', (req, res) => {
         })
 })
 
+app.get('/client/edit/:id', (req, res) => {
+    Client.findOne({
+        _id: req.params.id
+    })
+        .then(client => {
+            res.render('client/edit', {
+                client
+            })
+        })
+})
+
 const port = 5000
 
 app.listen(port, () => {

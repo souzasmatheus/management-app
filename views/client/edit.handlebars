@@ -2,40 +2,18 @@
     <div class="col-lg-8">
         <div class="card">
             <div class="card-header bg-dark">
-                <p class="text-uppercase text-center m-0 text-light">Cadastro do cliente</p>
+                <p class="text-uppercase text-center m-0 text-light">Editar informações de <span class="h5">{{client.name}}</span></p>
             </div>
             <div class="card-body">
-                <form action="/client/add" method="post">
-                    <div class="form-group">
-                        <label for="name">Nome</label>
-                        <input type="text" name="name" class="form-control" placeholder="Ex.: João Silva" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="document">Documento</label>
-                        <input type="text" name="document" class="form-control" placeholder="Ex.: 051.859.810-16" required>
-                    </div>
-                    <div class="form-row mb-3">
-                        <div class="col">
-                            <label for="birthday">Birthday</label>
-                            <input type="date" name="birthday" class="form-control" required>
-                        </div>
-                        <div class="col">
-                            <label for="sex">Sexo</label>
-                            <select class="form-control" name="sex" required>
-                                <option>Masculino</option>
-                                <option>Feminino</option>
-                                <option disabled="disabled">Não existe outro</option>
-                            </select>
-                        </div>
-                    </div>
+                <form action="/client" method="post">
                     <div class="form-group">
                         <label for="address">Endereço</label>
-                        <input type="text" name="address" class="form-control" placeholder="Ex.: Rua dos Bobos, 0"  required>
+                        <input type="text" name="address" class="form-control" value="{{client.address}}"  required>
                     </div>
                     <div class="form-row mb-3">
                         <div class="col">
                             <label for="city">Cidade</label>
-                            <input type="text" name="city" class="form-control"  required>
+                            <input type="text" name="city" class="form-control" value="{{client.city}}"  required>
                         </div>
                         <div class="col">
                             <label for="state">Estado</label>
@@ -72,13 +50,17 @@
                     </div>
                     <div class="form-group">
                         <label for="number">Telefone</label>
-                        <input type="text" name="number" class="form-control" placeholder="Ex.: 22123456789" required>
+                        <input type="text" name="number" class="form-control" value="{{client.number}}" required>
                     </div>
                     <div class="form-group">
                         <label for="email">E-mail</label>
-                        <input type="email" name="email" class="form-control" placeholder="Ex.: jlm_contato@hotmail.com" required>
+                        <input type="email" name="email" class="form-control" value="{{client.email}}" required>
                     </div>
-                    <button type="submit" class="btn btn-success float-right">Cadastrar</button>
+                    <div class="float-right">
+                        <a href="/" class="btn btn-danger mr-2 ">Cancelar</a>
+                        <button type="submit" class="btn btn-success ">Editar</button>
+                    </div>
+                    
                 </form>
             </div>
         </div>
