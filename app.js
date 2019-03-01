@@ -103,6 +103,21 @@ app.put('/client/:id', (req, res) => {
         })
 })
 
+app.get('/search', (req, res) => {
+    var {search} = req.query
+
+    Client.find()
+        .or([{city: search}, {name: search}])
+        .lean()
+        .then(clients => {
+            console.log(clients)
+            res.render('index', {
+                clients
+            })
+        })
+        .catch(err => console.log(err))
+})
+
 const port = 5000
 
 app.listen(port, () => {
