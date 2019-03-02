@@ -104,10 +104,12 @@ app.put('/client/:id', (req, res) => {
 })
 
 app.get('/search', (req, res) => {
-    var {search} = req.query
+    let queryParam = {}
+    queryParam[req.query.type] = req.query.search
+    
+    console.log(queryParam)
 
-    Client.find()
-        .or([{city: search}, {name: search}])
+    Client.find(queryParam)
         .lean()
         .then(clients => {
             console.log(clients)
