@@ -105,7 +105,11 @@ app.put('/client/:id', (req, res) => {
 
 app.get('/search', (req, res) => {
     let queryParam = {}
-    queryParam[req.query.type] = req.query.search
+    const regEx = new RegExp(req.query.search)
+    queryParam[req.query.type] = {
+        $regex: regEx,
+        $options: 'i'
+    }
     
     console.log(queryParam)
 
