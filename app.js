@@ -110,13 +110,10 @@ app.get('/search', (req, res) => {
         $regex: regEx,
         $options: 'i'
     }
-    
-    console.log(queryParam)
 
     Client.find(queryParam)
         .lean()
         .then(clients => {
-            console.log(clients)
             res.render('index', {
                 clients
             })
