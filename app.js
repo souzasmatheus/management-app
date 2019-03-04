@@ -140,7 +140,7 @@ app.get('/client/delete/:id', (req, res) => {
 app.delete('/client/:id', (req, res) => {
     const id = req.params.id
 
-    Client.remove({
+    Client.deleteOne({
         _id: id
     })
         .then(() => {
