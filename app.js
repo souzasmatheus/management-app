@@ -122,7 +122,7 @@ app.get('/search', (req, res) => {
         .catch(err => console.log(err))
 })
 
-// Delete Page
+// Delete Confirmation Page
 app.get('/client/delete/:id', (req, res) => {
     const id = req.params.id
     
@@ -133,6 +133,18 @@ app.get('/client/delete/:id', (req, res) => {
             res.render('client/delete', {
                 client
             })
+        })
+})
+
+// Process Delete
+app.delete('/client/:id', (req, res) => {
+    const id = req.params.id
+
+    Client.remove({
+        _id: id
+    })
+        .then(() => {
+            res.redirect('/')
         })
 })
 
