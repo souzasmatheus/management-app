@@ -1,0 +1,23 @@
+<div class="row justify-content-lg-center">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header bg-danger">
+                <p class="text-uppercase text-center m-0 text-light h5">Tem certeza de que deseja apagar os dados de
+                    {{client.name}} ({{client.document}})?</p>
+            </div>
+            <div class="card-body">
+                <form action="/client/{{client.id}}?_method=DELETE" method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="/" class="btn btn-block btn-success mr-2 ">Cancelar</a>
+                        </div>
+                        <div class="col-md-6 mt-3 mt-md-0">
+                            <button type="submit" class="btn btn-block btn-danger">Deletar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

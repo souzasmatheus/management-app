@@ -103,6 +103,7 @@ app.put('/client/:id', (req, res) => {
         })
 })
 
+// Process Search
 app.get('/search', (req, res) => {
     let queryParam = {}
     const regEx = new RegExp(req.query.search)
@@ -119,6 +120,20 @@ app.get('/search', (req, res) => {
             })
         })
         .catch(err => console.log(err))
+})
+
+// Delete Page
+app.get('/client/delete/:id', (req, res) => {
+    const id = req.params.id
+    
+    Client.findOne({
+        _id: id
+    })
+        .then(client => {
+            res.render('client/delete', {
+                client
+            })
+        })
 })
 
 const port = 5000
