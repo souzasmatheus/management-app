@@ -1,0 +1,43 @@
+<div class="row justify-content-lg-center">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header bg-success">
+                <p class="text-uppercase text-center m-0 text-light h5">Check In</p>
+            </div>
+
+            <div class="card-body">
+                <form action="/client/check-in/{{id}}?_method=PUT" method="post">
+                    <input type="hidden" name="_method" value="PUT">
+                    <div class="form-row mb-md-3">
+                        <div class="col">
+                            <label for="checkin">Entrada</label>
+                            <input type="date" name="checkin" class="form-control" required>
+                        </div>
+                        <div class="col">
+                            <label for="checkout">Saída</label>
+                            <input type="date" name="checkout" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-row mb-md-3">
+                        <div class="col-12 col-md-6">
+                            <label for="payment">Preço</label>
+                            <input type="number" name="payment" class="form-control"  required>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label for="mean">Plataforma</label>
+                            <select size="1" class="form-control" name="mean"  required>
+                                <option>Booking</option>
+                                <option>Airbnb</option>
+                                <option>Indicação de conhecido</option>
+                                <option>Já veio no passado</option>
+                                <option>Outro</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success float-right mt-3 mt-md-0">Fazer Check In</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

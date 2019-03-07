@@ -148,6 +148,36 @@ app.delete('/client/:id', (req, res) => {
         })
 })
 
+// Check In Form Page
+app.get('/client/check-in/:id', (req, res) => {
+    const id = req.params.id
+
+    res.render('client/check-in', {
+        id
+    })
+})
+
+// Handle Check In
+app.put('/client/check-in/:id', (req, res) => {
+    const id = req.params.id
+
+    Client.updateOne({
+        _id: id
+    }, {
+        $push: {
+            checkIns: {
+                "checkin": req.body.checkin,
+                "checkout": req.body.checkout,
+                "payment": req.body.payment,
+                "mean": req.body.mean
+            }
+        }
+    })
+        .then(() => {
+            res.redirect('/')
+        })
+})
+
 const port = 5000
 
 app.listen(port, () => {

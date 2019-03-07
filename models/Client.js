@@ -33,6 +33,10 @@ const ClientSchema = new Schema({
     date: {
         type: Date,
         default: Date.now
+    },
+    checkIns: {
+        type: Array,
+        default: []
     }
 })
 
