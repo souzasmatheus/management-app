@@ -6,6 +6,17 @@ const methodOverride = require('method-override')
 
 const app = express()
 
+const hbs = exphbs.create({
+    defaultLayout: 'main',
+    helpers: {
+        getAge: (date) => {
+            const birthyear = date.split('-')[0]
+            const age = new Date().getFullYear() - birthyear
+            return age
+        }
+    }
+})
+
 const dataBase = 'mongodb://localhost/management'
 
 // Connect to mongoose
@@ -20,9 +31,7 @@ require('./models/Client')
 const Client = mongoose.model('clients')
 
 // Handlebars Middleware
-app.engine('handlebars', exphbs({
-    defaultLayout: 'main'
-}))
+app.engine('handlebars', hbs.engine)
 app.set('view engine', 'handlebars')
 
 // Body Parser Middleware
