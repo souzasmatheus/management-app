@@ -22,30 +22,18 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Documento</th>
-                        <th scope="col">E-mail</th>
-                        <th scope="col">Nascimento</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{{document}}</td>
-                        <td>{{email}}</td>
-                        <td>{{birthday}}</td>
-                    </tr>
-                </tbody>
-                <thead>
-                    <tr>
-                        <th scope="col">Sexo</th>
                         <th scope="col">Cidade</th>
-                        <th scope="col">Telefone</th>
+                        <th scope="col">Sexo</th>
+                        <th scope="col">Idade</th>
+                        <th scope="col">Hospedagens</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{{sex}}</td>
                         <td>{{city}}, {{state}}</td>
-                        <td>{{number}}</td>
+                        <td>{{sex}}</td>
+                        <td>{{getAge birthday}}</td>
+                        <td>{{checkIns.length}}</td>
                     </tr>
                 </tbody>
             </table>
