@@ -52,6 +52,20 @@ app.get('/', (req, res) => {
         })
 })
 
+// Client Details
+app.get('/client/details/:id', (req, res) => {
+    const id = req.params.id
+
+    Client.findOne({
+        _id: id
+    })
+        .then(client => {
+            res.render('client/details', {
+                client
+            })
+        })
+})
+
 // Clients Register
 app.get('/client/add', (req, res) => {
     res.render('client/add')
