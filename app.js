@@ -3,6 +3,7 @@ const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
+const dateFns = require('date-fns')
 
 const app = express()
 
@@ -13,6 +14,14 @@ const hbs = exphbs.create({
             const birthyear = date.split('-')[0]
             const age = new Date().getFullYear() - birthyear
             return age
+        },
+        toBrazilianFormat: (date) => {
+            const result = dateFns.format(
+                new Date(date),
+                'DD/MM/YY'
+            )
+
+            return result
         }
     }
 })
