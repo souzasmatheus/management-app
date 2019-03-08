@@ -2,18 +2,19 @@
     <div class="col-lg-8">
         <div class="card border-dark">
             <div class="card-header">
-                <p class="text-uppercase text-center m-0 text-dark">Informações gerais</span></p>
+                <p class="text-uppercase text-center m-0 text-dark h5">Informações gerais</span></p>
             </div>
             <div class="card-body pt-0 pb-0">
                 <div class="table-responsive">
                     <table class="table">
                         <tbody>
                             <tr>
-                                <th class="border-top-0" scope="row">Nome:</th>
+                                <th class="border-top-0 w-50" scope="row">Nome:</th>
                                 <td class="border-top-0">{{client.name}}</td>
                             </tr>
                             <tr>
-                                <th scope="row">Documento:</th> <td>{{client.document}}</td>
+                                <th scope="row">Documento:</th>
+                                <td>{{client.document}}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Idade:</th>
@@ -38,7 +39,42 @@
                         </tbody>
                     </table>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
 
+<div class="row justify-content-lg-center mt-3 mb-3">
+    <div class="col-lg-8">
+        <div class="card border-dark">
+            <div class="card-header">
+                <p class="text-uppercase text-center m-0 text-dark h5">Check-ins</span></p>
+            </div>
+            <div class="card-body pb-0">
+                <div class="table-responsive">
+                    {{#each client.checkIns}}
+                        <table class="table table-dark">
+                            <tbody>
+                                <tr>
+                                    <th scope="row" class="w-50">Entrada:</th>
+                                    <td>{{checkin}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Saída:</th>
+                                    <td>{{checkout}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Pagamento:</th>
+                                    <td>{{payment}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Plataforma:</th>
+                                    <td>{{mean}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    {{/each}}
+                </div>
             </div>
         </div>
     </div>
