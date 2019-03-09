@@ -58,6 +58,14 @@
                                 <th class="border-top-0 w-50" scope="row">Total de dias:</th>
                                 <td class="border-top-0">{{getSumOfDays client.checkIns}}</td>
                             </tr>
+                            <tr>
+                                <th class="border-top-0 w-50" scope="row">Total de pagamentos:</th>
+                                <td class="border-top-0">R${{getSumOfPayments client.checkIns}}</td>
+                            </tr>
+                            <tr>
+                                <th class="border-top-0 w-50" scope="row">Média total de diárias:</th>
+                                <td class="border-top-0">R${{getTotalMedian client.checkIns}}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -92,6 +100,10 @@
                                 <tr>
                                     <th scope="row">Plataforma:</th>
                                     <td>{{mean}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="w-50">Média diária:</th>
+                                    <td>R${{getIndividualMedian checkout checkin payment}}</td>
                                 </tr>
                             </tbody>
                         </table>
