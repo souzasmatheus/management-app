@@ -56,7 +56,8 @@ app.get('/client/details/:id', (req, res) => {
     })
         .then(client => {
             res.render('client/details', {
-                client
+                client,
+                checkIns: client.checkIns.reverse()
             })
         })
 })
