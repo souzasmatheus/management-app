@@ -188,7 +188,8 @@ app.put('/client/check-in/:id', (req, res) => {
                 "checkin": req.body.checkin,
                 "checkout": req.body.checkout,
                 "payment": req.body.payment,
-                "mean": req.body.mean
+                "mean": req.body.mean,
+                "guests": req.body.guests
             }
         }
     })
