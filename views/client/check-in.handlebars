@@ -6,7 +6,11 @@
             </div>
 
             <div class="card-body">
+                {{#if edit}}
+                <form action="/client/check-in-edit/{{clientId}}?checkInId={{id}}&_method=PUT" method="post">
+                {{else}}
                 <form action="/client/check-in/{{id}}?_method=PUT" method="post">
+                {{/if}}
                     <input type="hidden" name="_method" value="PUT">
                     <div class="form-row mb-md-3">
                         <div class="col">
@@ -40,7 +44,11 @@
                             </select>
                         </div>
                     </div>
+                    {{#if edit}}
+                    <button type="submit" class="btn btn-success float-right mt-3 mt-md-0">Fazer Edição</button>
+                    {{else}}
                     <button type="submit" class="btn btn-success float-right mt-3 mt-md-0">Fazer Check In</button>
+                    {{/if}}
                 </form>
             </div>
 

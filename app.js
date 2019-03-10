@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
 const helpers = require('./lib/helpers')
+const uuidv1 = require('uuid/v1')
 
 const app = express()
 
@@ -171,12 +172,26 @@ app.delete('/client/:id', (req, res) => {
 app.get('/client/check-in/:id', (req, res) => {
     const id = req.params.id
 
-    res.render('client/check-in', {
-        id
-    })
+    if (req.headers.referer.match(/details/g)) {
+        const previousUrlArray = req.headers.referer.split('/')
+        const arrayLength = previousUrlArray.length
+        const clientId = previousUrlArray[arrayLength - 1]
+
+        res.render('client/check-in', {
+            id,
+            clientId,
+            edit: true
+        })
+    } else {
+        res.render('client/check-in', {
+            id
+        })
+    }
+
+    
 })
 
-// Handle Check In
+// Handle New Check In
 app.put('/client/check-in/:id', (req, res) => {
     const id = req.params.id
 
@@ -189,13 +204,32 @@ app.put('/client/check-in/:id', (req, res) => {
                 "checkout": req.body.checkout,
                 "payment": req.body.payment,
                 "mean": req.body.mean,
-                "guests": req.body.guests
+                "guests": req.body.guests,
+                "id": uuidv1()
             }
         }
     })
         .then(() => {
             res.redirect('/')
         })
+})
+
+// Handle Check In Editing
+app.put('/client/check-in-edit/:id', (req, res) => {
+    const clientId = req.params.id,
+        checkInId = req.query.checkInId
+
+    Client.findOne({
+        _id: clientId
+    })
+        .updateOne({'checkIns.id': checkInId}, {'$set': {
+            'checkIns.$.checkin': req.body.checkin,
+            "checkIns.$.checkout": req.body.checkout,
+            "checkIns.$.payment": req.body.payment,
+            "checkIns.$.mean": req.body.mean,
+            "checkIns.$.guests": req.body.guests
+        }})
+        .then(() => res.redirect(`/client/details/${clientId}`))
 })
 
 const port = 5000
