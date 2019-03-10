@@ -15,27 +15,30 @@
                     <div class="form-row mb-md-3">
                         <div class="col">
                             <label for="checkin">Entrada</label>
-                            <input type="date" name="checkin" class="form-control" required>
+                            <input type="date" name="checkin" class="form-control" value="{{checkin}}" required>
                         </div>
                         <div class="col">
                             <label for="checkout">Saída</label>
-                            <input type="date" name="checkout" class="form-control" required>
+                            <input type="date" name="checkout" class="form-control" value="{{checkout}}" required>
                         </div>
                     </div>
                     <div class="form-row mb-md-3">
                         <div class="col-12 col-md-6">
                             <label for="payment">Preço</label>
-                            <input type="number" name="payment" class="form-control"  required>
+                            <input type="number" name="payment" class="form-control"  value="{{payment}}" required>
                         </div>
                         <div class="col-12 col-md-6">
                             <label for="guests">Número de hóspedes</label>
-                            <input type="number" name="guests" class="form-control"  required>
+                            <input type="number" name="guests" class="form-control"  value="{{guests}}" required>
                         </div>
                     </div>
                     <div class="form-row mb-md-3">
                         <div class="col-12">
                             <label for="mean">Plataforma</label>
                             <select size="1" class="form-control" name="mean"  required>
+                                {{#if edit}}
+                                <option selected="selected">{{mean}}</option>
+                                {{/if}}
                                 <option>Booking</option>
                                 <option>Airbnb</option>
                                 <option>Indicação de conhecido</option>

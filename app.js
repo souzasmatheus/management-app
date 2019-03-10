@@ -173,15 +173,29 @@ app.get('/client/check-in/:id', (req, res) => {
     const id = req.params.id
 
     if (req.headers.referer.match(/details/g)) {
+        // get previous URL's info of client's id
         const previousUrlArray = req.headers.referer.split('/')
         const arrayLength = previousUrlArray.length
         const clientId = previousUrlArray[arrayLength - 1]
 
-        res.render('client/check-in', {
-            id,
-            clientId,
-            edit: true
+        // get checkin informations to pass into view
+        Client.findOne({
+            _id: clientId
         })
+            .then(client => {
+                const checkInObj = client.checkIns.filter((checkin) => (checkin.id === id))
+
+                res.render('client/check-in', {
+                    id,
+                    clientId,
+                    edit: true,
+                    checkin: checkInObj[0].checkin,
+                    checkout: checkInObj[0].checkout,
+                    payment: checkInObj[0].payment,
+                    mean: checkInObj[0].mean,
+                    guests: checkInObj[0].guests
+                })
+            })
     } else {
         res.render('client/check-in', {
             id
