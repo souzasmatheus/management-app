@@ -83,34 +83,43 @@
             <div class="card-body pb-0">
                 <div class="table-responsive">
                     {{#each checkIns}}
-                        <table class="table table-dark">
-                            <tbody>
-                                <tr>
-                                    <th scope="row" class="w-50">Entrada:</th>
-                                    <td>{{toBrazilianFormat checkin}}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Saída:</th>
-                                    <td>{{toBrazilianFormat checkout}}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Pagamento:</th>
-                                    <td>R${{payment}}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Plataforma:</th>
-                                    <td>{{mean}}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Número de hóspedes:</th>
-                                    <td>{{guests}}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" class="w-50">Média diária:</th>
-                                    <td>R${{getIndividualMedian checkout checkin payment}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="row mb-2 no-gutters">
+                        <div class="col-2 col-md-1 offset-md-10">
+                            <a href="/client/check-in/{{id}}" class="btn btn-secondary"><i class="fas fa-tools"></i></a>
+                        </div>
+                        <div class="col-2 col-md-1">
+                            <a href="/client/check-in/{{id}}" class="btn btn-danger"><i class="fas fa-trash-alt"></i></i></a>
+                        </div>
+                        
+                    </div>
+                    <table class="table table-dark">
+                        <tbody>
+                            <tr>
+                                <th scope="row" class="w-50">Entrada:</th>
+                                <td>{{toBrazilianFormat checkin}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Saída:</th>
+                                <td>{{toBrazilianFormat checkout}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Pagamento:</th>
+                                <td>R${{payment}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Plataforma:</th>
+                                <td>{{mean}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Número de hóspedes:</th>
+                                <td>{{guests}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="w-50">Média diária:</th>
+                                <td>R${{getIndividualMedian checkout checkin payment}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                     {{/each}}
                 </div>
             </div>

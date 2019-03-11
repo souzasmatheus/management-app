@@ -68,7 +68,7 @@ app.get('/client/add', (req, res) => {
     res.render('client/add')
 })
 
-// Process Form
+// Process Register Form
 app.post('/client/add', (req, res) => {
     const{name, document, birthday,
     sex, address, city, state, number, email} = req.body
@@ -172,6 +172,7 @@ app.delete('/client/:id', (req, res) => {
 app.get('/client/check-in/:id', (req, res) => {
     const id = req.params.id
 
+    // Case user is editing check in
     if (req.headers.referer.match(/details/g)) {
         // get previous URL's info of client's id
         const previousUrlArray = req.headers.referer.split('/')
@@ -196,13 +197,12 @@ app.get('/client/check-in/:id', (req, res) => {
                     guests: checkInObj[0].guests
                 })
             })
+    // Case user is creating a new check in
     } else {
         res.render('client/check-in', {
             id
         })
     }
-
-    
 })
 
 // Handle New Check In
