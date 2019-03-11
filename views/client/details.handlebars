@@ -88,9 +88,16 @@
                             <a href="/client/check-in/{{id}}" class="btn btn-secondary"><i class="fas fa-tools"></i></a>
                         </div>
                         <div class="col-2 col-md-1">
-                            <a href="/client/check-in/{{id}}" class="btn btn-danger"><i class="fas fa-trash-alt"></i></i></a>
+                            <form action="/client/check-in-delete/{{id}}?_method=DELETE" method="post">
+                                <input type="hidden" name="_method" value="DELETE">
+
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+
                         </div>
-                        
+
                     </div>
                     <table class="table table-dark">
                         <tbody>

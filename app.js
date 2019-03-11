@@ -246,6 +246,23 @@ app.put('/client/check-in-edit/:id', (req, res) => {
         .then(() => res.redirect(`/client/details/${clientId}`))
 })
 
+// Handle Check In Deleting
+app.delete('/client/check-in-delete/:id', (req, res) => {
+    const previousUrlArray = req.headers.referer.split('/')
+    const arrayLength = previousUrlArray.length
+    const clientId = previousUrlArray[arrayLength - 1]
+
+    const checkInId = req.params.id
+
+    Client.findOne({
+        _id: clientId
+    })
+        .updateOne({'$pull': {
+            checkIns: {id: checkInId}
+        }})
+        .then(() => res.redirect(`/client/details/${clientId}`))
+})
+
 const port = 5000
 
 app.listen(port, () => {
