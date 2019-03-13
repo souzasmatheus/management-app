@@ -4,7 +4,7 @@ const router = express.Router()
 
 // User Login Router
 router.get('/login', (req, res) => {
-    res.send('login')
+    res.render('user/login')
 })
 
 // User Login Router
