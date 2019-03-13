@@ -9,6 +9,7 @@ const app = express()
 
 // Load routes
 const client = require('./routes/client')
+const user = require('./routes/user')
 
 const hbs = exphbs.create({
     defaultLayout: 'main',
@@ -71,6 +72,7 @@ app.get('/search', (req, res) => {
 
 // Use Routes
 app.use('/client', client)
+app.use('/user', user)
 
 const port = 5000
 
