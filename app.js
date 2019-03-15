@@ -5,12 +5,15 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
 const helpers = require('./lib/helpers')
-
+const passport = require('passport')
 const app = express()
 
 // Load routes
 const client = require('./routes/client')
 const user = require('./routes/user')
+
+// Passport Config
+require('./config/passport')(passport)
 
 const hbs = exphbs.create({
     defaultLayout: 'main',
