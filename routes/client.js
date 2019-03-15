@@ -104,7 +104,7 @@ router.delete('/:id', (req, res) => {
         _id: id
     })
         .then((client) => {
-            req.flash('success_msg', `Cliente deletado com sucesso!`)
+            req.flash('success_msg', 'Cliente deletado com sucesso!')
             res.redirect('/')
         })
 })
@@ -165,7 +165,8 @@ router.put('/check-in/:id', (req, res) => {
         }
     })
         .then(() => {
-            res.redirect('/')
+            req.flash('success_msg', 'Novo check-in realizado!')
+            res.redirect(`/client/details/${id}`)
         })
 })
 
