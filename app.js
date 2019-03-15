@@ -4,6 +4,8 @@ const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
+const flash = require('connect-flash')
+const session = require('express-session')
 const helpers = require('./lib/helpers')
 const passport = require('passport')
 const app = express()
@@ -46,6 +48,24 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 // Method Override Middleware
 app.use(methodOverride('_method'))
+
+// Express Session Middleware
+app.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+}))
+
+// Flash Middleware
+app.use(flash())
+
+// Global variables
+app.use((req, res, next) => {
+    res.locals.success_msg = req.flash('success_msg')
+    res.locals.error_msg = req.flash('error_msg')
+    res.locals.error = req.flash('error')
+    next()
+})
 
 // History Route
 app.get('/', (req, res) => {
