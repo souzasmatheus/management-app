@@ -103,7 +103,8 @@ router.delete('/:id', (req, res) => {
     Client.deleteOne({
         _id: id
     })
-        .then(() => {
+        .then((client) => {
+            req.flash('success_msg', `Cliente deletado com sucesso!`)
             res.redirect('/')
         })
 })
