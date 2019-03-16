@@ -29,8 +29,8 @@ router.get('/add', (req, res) => {
 
 // Process Register Form
 router.post('/add', (req, res) => {
-    const{name, document, birthday,
-    sex, address, city, state, number, email} = req.body
+    const { name, document, birthday,
+        sex, address, city, state, number, email } = req.body
     const newClient = {
         name,
         document,
@@ -43,11 +43,21 @@ router.post('/add', (req, res) => {
         email
     }
 
-    new Client(newClient)
-        .save()
+    Client.findOne({
+        document
+    })
         .then(client => {
-            req.flash('success_msg', 'Novo cliente cadastrado!')
-            res.redirect('/')
+            if (client) {
+                req.flash('error_msg', 'Este cliente já está cadastrado')
+                res.redirect('/')
+            } else {
+                new Client(newClient)
+                    .save()
+                    .then(client => {
+                        req.flash('success_msg', 'Novo cliente cadastrado!')
+                        res.redirect('/')
+                    })
+            }
         })
 })
 
@@ -86,7 +96,7 @@ router.put('/:id', (req, res) => {
 // Delete Confirmation Page
 router.get('/delete/:id', (req, res) => {
     const id = req.params.id
-    
+
     Client.findOne({
         _id: id
     })
@@ -139,7 +149,7 @@ router.get('/check-in/:id', (req, res) => {
                     guests: checkInObj[0].guests
                 })
             })
-    // Case user is creating a new check in
+        // Case user is creating a new check in
     } else {
         res.render('client/check-in', {
             id
@@ -154,17 +164,17 @@ router.put('/check-in/:id', (req, res) => {
     Client.updateOne({
         _id: id
     }, {
-        $push: {
-            checkIns: {
-                "checkin": req.body.checkin,
-                "checkout": req.body.checkout,
-                "payment": req.body.payment,
-                "mean": req.body.mean,
-                "guests": req.body.guests,
-                "id": uuidv1()
+            $push: {
+                checkIns: {
+                    "checkin": req.body.checkin,
+                    "checkout": req.body.checkout,
+                    "payment": req.body.payment,
+                    "mean": req.body.mean,
+                    "guests": req.body.guests,
+                    "id": uuidv1()
+                }
             }
-        }
-    })
+        })
         .then(() => {
             req.flash('success_msg', 'Novo check-in realizado!')
             res.redirect(`/client/details/${id}`)
@@ -179,13 +189,15 @@ router.put('/check-in-edit/:id', (req, res) => {
     Client.findOne({
         _id: clientId
     })
-        .updateOne({'checkIns.id': checkInId}, {'$set': {
-            'checkIns.$.checkin': req.body.checkin,
-            "checkIns.$.checkout": req.body.checkout,
-            "checkIns.$.payment": req.body.payment,
-            "checkIns.$.mean": req.body.mean,
-            "checkIns.$.guests": req.body.guests
-        }})
+        .updateOne({ 'checkIns.id': checkInId }, {
+            '$set': {
+                'checkIns.$.checkin': req.body.checkin,
+                "checkIns.$.checkout": req.body.checkout,
+                "checkIns.$.payment": req.body.payment,
+                "checkIns.$.mean": req.body.mean,
+                "checkIns.$.guests": req.body.guests
+            }
+        })
         .then(() => res.redirect(`/client/details/${clientId}`))
 })
 
@@ -200,9 +212,11 @@ router.delete('/check-in-delete/:id', (req, res) => {
     Client.findOne({
         _id: clientId
     })
-        .updateOne({'$pull': {
-            checkIns: {id: checkInId}
-        }})
+        .updateOne({
+            '$pull': {
+                checkIns: { id: checkInId }
+            }
+        })
         .then(() => {
             req.flash('success_msg', 'Check-in deletado!')
             res.redirect(`/client/details/${clientId}`)
