@@ -46,6 +46,7 @@ router.post('/add', (req, res) => {
     new Client(newClient)
         .save()
         .then(client => {
+            req.flash('success_msg', 'Novo cliente cadastrado!')
             res.redirect('/')
         })
 })
