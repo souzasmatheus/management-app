@@ -28,6 +28,27 @@ router.post('/login', (req, res, next) => {
 
 // Register Form Post
 router.post('/register', (req, res) => {
+    let errors = []
+
+    if(req.body.password !== req.body.password2) {
+        errors.push({
+            text: 'As senhas devem ser iguais'
+        })
+    }
+
+    if(errors.length > 0) {
+        res.render('user/register', {
+            errors: errors,
+            name: req.body.name,
+            email: req.body.email,
+            password: req.body.password,
+            password2: req.body.password2
+        })
+    } else {
+        res.send('passed')
+    }
+
+    /*
     const newUser = new User({
         name: req.body.name,
         email: req.body.email,
@@ -46,7 +67,7 @@ router.post('/register', (req, res) => {
                     return
                 })
         })
-    })
+    })*/
 })
 
 module.exports = router
