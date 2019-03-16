@@ -203,7 +203,10 @@ router.delete('/check-in-delete/:id', (req, res) => {
         .updateOne({'$pull': {
             checkIns: {id: checkInId}
         }})
-        .then(() => res.redirect(`/client/details/${clientId}`))
+        .then(() => {
+            req.flash('success_msg', 'Check-in deletado!')
+            res.redirect(`/client/details/${clientId}`)
+        })
 })
 
 module.exports = router
