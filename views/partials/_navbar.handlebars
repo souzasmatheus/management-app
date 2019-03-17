@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-3">
     <div class="container">
         <a class="navbar-brand" href="/">Housing</a>
+        {{#if user}}
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -20,7 +21,6 @@
                         Pesquisar cliente
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
                         <form action="/search" method="GET" class="mx-2">
                             <div class="form-group">
                                 <label for="type">Pesquisar por:</label>
@@ -40,12 +40,21 @@
                             <div class="form-group">
                                 <button class="btn btn-block btn-outline-success" type="submit">Pesquisar</button>
                             </div>
-
                         </form>
+
+
                     </div>
                 </li>
             </ul>
 
         </div>
+        {{else}}
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/user/login">Fazer login</a>
+            </li>
+        </ul>
+        
+        {{/if}}
     </div>
 </nav>
