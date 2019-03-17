@@ -2,13 +2,14 @@ const express = require('express')
 const mongoose = require('mongoose')
 const router = express.Router()
 const uuidv1 = require('uuid/v1')
+const {ensureAuthenticated} = require('../lib/auth')
 
 // Load Client Model
 require('../models/Client')
 const Client = mongoose.model('clients')
 
 // Client Details
-router.get('/details/:id', (req, res) => {
+router.get('/details/:id', ensureAuthenticated, (req, res) => {
     const id = req.params.id
 
     Client.findOne({
@@ -23,12 +24,12 @@ router.get('/details/:id', (req, res) => {
 })
 
 // Clients Register
-router.get('/add', (req, res) => {
+router.get('/add', ensureAuthenticated, (req, res) => {
     res.render('client/add')
 })
 
 // Process Register Form
-router.post('/add', (req, res) => {
+router.post('/add', ensureAuthenticated, (req, res) => {
     const { name, document, birthday,
         sex, address, city, state, number, email } = req.body
     const newClient = {
@@ -62,7 +63,7 @@ router.post('/add', (req, res) => {
 })
 
 // Clients Info Edit
-router.get('/edit/:id', (req, res) => {
+router.get('/edit/:id', ensureAuthenticated, (req, res) => {
     Client.findOne({
         _id: req.params.id
     })
@@ -74,7 +75,7 @@ router.get('/edit/:id', (req, res) => {
 })
 
 // Process Edit Form
-router.put('/:id', (req, res) => {
+router.put('/:id', ensureAuthenticated, (req, res) => {
 
     Client.findOne({
         _id: req.params.id
@@ -94,7 +95,7 @@ router.put('/:id', (req, res) => {
 })
 
 // Delete Confirmation Page
-router.get('/delete/:id', (req, res) => {
+router.get('/delete/:id', ensureAuthenticated, (req, res) => {
     const id = req.params.id
 
     Client.findOne({
@@ -108,7 +109,7 @@ router.get('/delete/:id', (req, res) => {
 })
 
 // Process Delete
-router.delete('/:id', (req, res) => {
+router.delete('/:id', ensureAuthenticated, (req, res) => {
     const id = req.params.id
 
     Client.deleteOne({
@@ -121,7 +122,7 @@ router.delete('/:id', (req, res) => {
 })
 
 // Check In Form Page
-router.get('/check-in/:id', (req, res) => {
+router.get('/check-in/:id', ensureAuthenticated, (req, res) => {
     const id = req.params.id
 
     // Case user is editing check in
@@ -158,7 +159,7 @@ router.get('/check-in/:id', (req, res) => {
 })
 
 // Handle New Check In
-router.put('/check-in/:id', (req, res) => {
+router.put('/check-in/:id', ensureAuthenticated, (req, res) => {
     const id = req.params.id
 
     Client.updateOne({
@@ -182,7 +183,7 @@ router.put('/check-in/:id', (req, res) => {
 })
 
 // Handle Check In Editing
-router.put('/check-in-edit/:id', (req, res) => {
+router.put('/check-in-edit/:id', ensureAuthenticated, (req, res) => {
     const clientId = req.params.id,
         checkInId = req.query.checkInId
 
@@ -202,7 +203,7 @@ router.put('/check-in-edit/:id', (req, res) => {
 })
 
 // Handle Check In Deleting
-router.delete('/check-in-delete/:id', (req, res) => {
+router.delete('/check-in-delete/:id', ensureAuthenticated, (req, res) => {
     const previousUrlArray = req.headers.referer.split('/')
     const arrayLength = previousUrlArray.length
     const clientId = previousUrlArray[arrayLength - 1]

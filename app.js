@@ -9,6 +9,7 @@ const session = require('express-session')
 const helpers = require('./lib/helpers')
 const passport = require('passport')
 const app = express()
+const {ensureAuthenticated} = require('./lib/auth')
 
 // Load routes
 const client = require('./routes/client')
@@ -73,7 +74,7 @@ app.use((req, res, next) => {
 })
 
 // History Route
-app.get('/', (req, res) => {
+app.get('/', ensureAuthenticated, (req, res) => {
     Client.find({})
         .sort({date: -1})
         .then(clients => {
@@ -84,7 +85,7 @@ app.get('/', (req, res) => {
 })
 
 // Process Search
-app.get('/search', (req, res) => {
+app.get('/search', ensureAuthenticated, (req, res) => {
     let queryParam = {}
     const regEx = new RegExp(req.query.search)
     queryParam[req.query.type] = {
