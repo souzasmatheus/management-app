@@ -33,6 +33,7 @@ router.post('/add', ensureAuthenticated, (req, res) => {
     const { name, document, birthday,
         sex, address, city, state, number, email } = req.body
     const newClient = {
+        user: req.user.id,
         name,
         document,
         birthday,

@@ -75,7 +75,9 @@ app.use((req, res, next) => {
 
 // History Route
 app.get('/', ensureAuthenticated, (req, res) => {
-    Client.find({})
+    Client.find({
+        user: req.user.id
+    })
         .sort({date: -1})
         .then(clients => {
             res.render('index', {
@@ -86,7 +88,9 @@ app.get('/', ensureAuthenticated, (req, res) => {
 
 // Process Search
 app.get('/search', ensureAuthenticated, (req, res) => {
-    let queryParam = {}
+    let queryParam = {
+        user: req.user.id
+    }
     const regEx = new RegExp(req.query.search)
     queryParam[req.query.type] = {
         $regex: regEx,
