@@ -13,13 +13,18 @@ router.get('/details/:id', ensureAuthenticated, (req, res) => {
     const id = req.params.id
 
     Client.findOne({
-        _id: id
+        _id: id,
+        user: req.user.id
     })
         .then(client => {
             res.render('client/details', {
                 client,
                 checkIns: client.checkIns.reverse()
             })
+        })
+        .catch(err => {
+            console.log(err)
+            res.redirect('/')
         })
 })
 
