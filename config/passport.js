@@ -6,14 +6,14 @@ const bcrypt = require('bcryptjs')
 const User = mongoose.model('users')
 
 module.exports = function(passport) {
-    passport.use(new LocalStrategy({usernameField: 'email'}, (email, passport, done) => {
+    passport.use(new LocalStrategy({usernameField: 'email'}, (email, password, done) => {
         // Match user
         User.findOne({
             email: email
         })
             .then(user => {
                 if(!user) {
-                    return done(null, false)
+                    return done(null, false, {message: 'Usuário não cadastrado'})
                 }
 
                 // Match password
@@ -22,7 +22,7 @@ module.exports = function(passport) {
                     if(isMatch) {
                         return done(null, user)
                     } else {
-                        return done(null, false)
+                        return done(null, false, {message: 'Senha ou email incorreto'})
                     }
                 })
             })
