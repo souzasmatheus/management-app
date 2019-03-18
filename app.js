@@ -111,6 +111,11 @@ app.get('/search', ensureAuthenticated, (req, res) => {
 app.use('/client', client)
 app.use('/user', user)
 
+// Catch unknown routes
+app.get('*', (req, res) => {
+    res.redirect('/')
+})
+
 const port = 5000
 
 app.listen(port, () => {
