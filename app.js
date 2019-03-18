@@ -107,6 +107,11 @@ app.get('/search', ensureAuthenticated, (req, res) => {
         .catch(err => console.log(err))
 })
 
+// About Route
+app.get('/about', (req, res) => {
+    res.render('about')
+})
+
 // Use Routes
 app.use('/client', client)
 app.use('/user', user)
