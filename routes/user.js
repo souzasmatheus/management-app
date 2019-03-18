@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 const passport = require('passport')
 const router = express.Router()
+const {ensureMasterAuthentication} = require('../lib/auth')
 
 // Load User Model
 require('../models/User')
@@ -14,7 +15,7 @@ router.get('/login', (req, res) => {
 })
 
 // User Login Router
-router.get('/register', (req, res) => {
+router.get('/register', ensureMasterAuthentication, (req, res) => {
     res.render('user/register')
 })
 
@@ -28,7 +29,7 @@ router.post('/login', (req, res, next) => {
 })
 
 // Register Form Post
-router.post('/register', (req, res) => {
+router.post('/register', ensureMasterAuthentication, (req, res) => {
     let errors = []
 
     if (req.body.password !== req.body.password2) {
