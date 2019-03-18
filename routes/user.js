@@ -67,7 +67,7 @@ router.post('/register', ensureMasterAuthentication, (req, res) => {
                             newUser.save()
                                 .then(user => {
                                     req.flash('success_msg', 'Usuário cadastrado')
-                                    res.redirect('/user/login')
+                                    res.redirect('/')
                                 })
                                 .catch(err => {
                                     console.log(err)
