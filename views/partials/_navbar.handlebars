@@ -45,9 +45,20 @@
 
                     </div>
                 </li>
-                {{{checkMaster user}}}
+
+
                 <li class="nav-item dropdown">
-                    <a class="nav-link" href="/user/logout">Sair</a>
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Conta
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        
+                        <a class="dropdown-item" href="/user/password">Mudar senha</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/user/logout">Sair</a>
+                        {{{checkMaster user}}}
+                    </div>
                 </li>
             </ul>
             {{else}}
