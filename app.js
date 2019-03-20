@@ -23,11 +23,8 @@ const hbs = exphbs.create({
     helpers
 })
 
-// DB Config
-const dataBase = require('./config/database')
-
 // Connect to mongoose
-mongoose.connect(dataBase.URL, {
+mongoose.connect('mongodb://souzasmatheus:81218525Matheus@ds117846.mlab.com:17846/housing', {
     useNewUrlParser: true
 })
     .then(() => console.log('MongoDB connected...'))
