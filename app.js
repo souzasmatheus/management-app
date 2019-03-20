@@ -23,10 +23,11 @@ const hbs = exphbs.create({
     helpers
 })
 
-const dataBase = 'mongodb://localhost/management'
+// DB Config
+const dataBase = require('./config/database')
 
 // Connect to mongoose
-mongoose.connect(dataBase, {
+mongoose.connect(dataBase.URL, {
     useNewUrlParser: true
 })
     .then(() => console.log('MongoDB connected...'))
@@ -121,7 +122,7 @@ app.get('*', (req, res) => {
     res.redirect('/')
 })
 
-const port = 5000
+const port = process.env.PORT || 5000
 
 app.listen(port, () => {
     console.log(`Server started on port ${port}`)
