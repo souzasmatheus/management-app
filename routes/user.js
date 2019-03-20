@@ -14,7 +14,7 @@ router.get('/login', (req, res) => {
     res.render('user/login')
 })
 
-// User Login Router
+// User Resgister Router
 router.get('/register', ensureMasterAuthentication, (req, res) => {
     res.render('user/register')
 })
@@ -88,7 +88,6 @@ router.get('/password', ensureAuthenticated, (req, res) => {
 // Handle New Password Form
 router.put('/password', ensureAuthenticated, (req, res) => {
     let errors = []
-
     if (req.body.password1 != req.body.password2) {
         errors.push({
             text: 'A nova senha e a confirmação devem ser iguais'
