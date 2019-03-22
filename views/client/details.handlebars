@@ -26,7 +26,15 @@
                             </tr>
                             <tr>
                                 <th scope="row">Endereço:</th>
-                                <td>{{client.address}}, {{client.city}}, {{client.state}}</td>
+                                <td>{{#if client.address}}
+                                    {{client.address}},
+                                    {{/if}}
+                                    {{#if client.city}}
+                                    {{client.city}},
+                                    {{/if}}
+                                    {{#if client.state}}
+                                    {{client.state}}
+                                    {{/if}}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Telefone:</th>
