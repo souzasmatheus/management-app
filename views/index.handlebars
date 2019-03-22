@@ -46,7 +46,12 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{{city}}, {{state}}</td>
+                        <td>{{#if city}}
+                            {{city}}, 
+                            {{/if}}
+                            {{#if state}}
+                            {{state}}
+                            {{/if}}</td>
                         <td>{{sex}}</td>
                         <td>{{getAge birthday}}</td>
                         <td>{{checkIns.length}}</td>
