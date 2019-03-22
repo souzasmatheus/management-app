@@ -1,5 +1,6 @@
 const express = require('express')
 const path = require('path')
+const favicon = require('serve-favicon');
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
@@ -70,6 +71,9 @@ app.use((req, res, next) => {
     res.locals.user = req.user || null
     next()
 })
+
+// Favicon Set Up
+app.use(favicon(path.join(__dirname,'public','images','favicon.ico')))
 
 // History Route
 app.get('/', ensureAuthenticated, (req, res) => {
