@@ -92,6 +92,7 @@ router.put('/:id', ensureAuthenticated, (req, res) => {
             client.state = req.body.state
             client.number = req.body.number
             client.email = req.body.email
+            client.birthday = req.body.birthday
 
             client.save()
                 .then(client => {

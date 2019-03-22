@@ -2,7 +2,8 @@
     <div class="col-lg-8">
         <div class="card">
             <div class="card-header bg-dark">
-                <p class="text-uppercase text-center m-0 text-light">Editar informações de <span class="h5">{{client.name}}</span></p>
+                <p class="text-uppercase text-center m-0 text-light">Editar informações de <span
+                        class="h5">{{client.name}}</span></p>
             </div>
             <div class="card-body">
                 <form action="/client/{{client.id}}?_method=PUT" method="post">
@@ -50,9 +51,15 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="number">Telefone</label>
-                        <input type="text" name="number" class="form-control" value="{{client.number}}">
+                    <div class="form-row mb-3">
+                        <div class="col">
+                            <label for="number">Telefone</label>
+                            <input type="text" name="number" class="form-control" value="{{client.number}}">
+                        </div>
+                        <div class="col">
+                            <label for="birthday">Nascimento</label>
+                            <input type="date" name="birthday" class="form-control" value="{{client.birthday}}">
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="email">E-mail</label>
@@ -62,7 +69,7 @@
                         <a href="/" class="btn btn-danger mr-2 ">Cancelar</a>
                         <button type="submit" class="btn btn-success ">Editar</button>
                     </div>
-                    
+
                 </form>
             </div>
         </div>
