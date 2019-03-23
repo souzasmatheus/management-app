@@ -2,7 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const router = express.Router()
 const uuidv1 = require('uuid/v1')
-const {ensureAuthenticated} = require('../lib/auth')
+const { ensureAuthenticated } = require('../lib/auth')
 
 // Load Client Model
 require('../models/Client')
@@ -50,22 +50,32 @@ router.post('/add', ensureAuthenticated, (req, res) => {
         email
     }
 
-    Client.findOne({
-        document
-    })
-        .then(client => {
-            if (client) {
-                req.flash('error_msg', 'Este cliente já está cadastrado')
-                res.redirect('/')
-            } else {
-                new Client(newClient)
-                    .save()
-                    .then(client => {
-                        req.flash('success_msg', 'Novo cliente cadastrado!')
-                        res.redirect('/')
-                    })
-            }
+    if (document) {
+        Client.findOne({
+            document
         })
+            .then(client => {
+                if (client) {
+                    req.flash('error_msg', 'Este cliente já está cadastrado')
+                    res.redirect('/')
+                } else {
+                    new Client(newClient)
+                        .save()
+                        .then(client => {
+                            req.flash('success_msg', 'Novo cliente cadastrado!')
+                            res.redirect('/')
+                        })
+                }
+            })
+    } else {
+        new Client(newClient)
+            .save()
+            .then(client => {
+                req.flash('success_msg', 'Novo cliente cadastrado!')
+                res.redirect('/')
+            })
+    }
+
 })
 
 // Clients Info Edit
