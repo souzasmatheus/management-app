@@ -1,6 +1,6 @@
 const express = require('express')
 const path = require('path')
-const favicon = require('serve-favicon');
+const favicon = require('serve-favicon')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
@@ -11,6 +11,9 @@ const helpers = require('./lib/helpers')
 const passport = require('passport')
 const app = express()
 const {ensureAuthenticated} = require('./lib/auth')
+
+// teste
+const {getNames} = require('./lib/bdayPeople')
 
 // Load routes
 const client = require('./routes/client')
@@ -67,6 +70,7 @@ app.use(flash())
 app.use((req, res, next) => {
     res.locals.success_msg = req.flash('success_msg')
     res.locals.error_msg = req.flash('error_msg')
+    //res.locals.birthday_msg = req.flash('birthday_msg')
     res.locals.error = req.flash('error')
     res.locals.user = req.user || null
     next()
@@ -82,6 +86,12 @@ app.get('/', ensureAuthenticated, (req, res) => {
     })
         .sort({date: -1})
         .then(clients => {
+            const bdayPeople = getNames(clients)
+
+            if (bdayPeople) {
+                res.locals.birthday_msg = bdayPeople
+            }
+            
             res.render('index', {
                 clients
             })
