@@ -12,12 +12,12 @@
                 <form action="/client/check-in/{{id}}?_method=PUT" method="post">
                 {{/if}}
                     <input type="hidden" name="_method" value="PUT">
-                    <div class="form-row mb-md-3">
+                    <div class="form-row mb-3">
                         <div class="col-12 col-md-6">
                             <label for="checkin">Entrada</label>
                             <input type="date" name="checkin" class="form-control" value="{{checkin}}" required>
                         </div>
-                        <div class="col-12 col-md-6">
+                        <div class="col-12 col-md-6 mt-3 mt-md-0">
                             <label for="checkout">Saída</label>
                             <input type="date" name="checkout" class="form-control" value="{{checkout}}" required>
                         </div>
@@ -27,12 +27,12 @@
                             <label for="payment">Preço</label>
                             <input type="number" name="payment" class="form-control"  value="{{payment}}" required>
                         </div>
-                        <div class="col-12 col-md-6">
+                        <div class="col-12 col-md-6 mt-3 mt-md-0">
                             <label for="guests">Número de hóspedes</label>
                             <input type="number" name="guests" class="form-control"  value="{{guests}}" required>
                         </div>
                     </div>
-                    <div class="form-row mb-md-3">
+                    <div class="form-row mb-md-3 mt-3 mt-md-0">
                         <div class="col-12">
                             <label for="mean">Plataforma</label>
                             <select size="1" class="form-control" name="mean"  required>
