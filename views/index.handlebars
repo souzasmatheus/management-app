@@ -1,76 +1,70 @@
 {{#if birthday_msg}}
-    <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
-        {{{birthday_msg}}}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+<div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+    {{{birthday_msg}}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
 {{/if}}
 
 {{#each clients}}
 <div class="card mb-3">
-    <div class="card-header bg-dark navbar navbar-expand-lg d-inline navbar-dark">
-        <div class="row d-flex align-items-center">
-            <div class="col col-lg-9">
-                <a href="/client/details/{{_id}}" class="stretched-link"></a>
-                <p class="h5 text-uppercase text-center m-0 text-light">{{name}}</p>
+    {{{getStatus checkIns.length name _id}}}
+                    <button class="navbar-toggler mr-1" type="button" data-toggle="collapse"
+                        data-target="#clientEditingButtons{{_id}}" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="clientEditingButtons{{_id}}">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item dropdown mb-1 mt-2 my-lg-0 mx-1">
+                                <a href="/client/edit/{{_id}}" class="btn btn-outline-secondary btn-block">Editar</a>
+
+                            </li>
+                            <li class="nav-item dropdown my-1 my-lg-0 mx-1">
+                                <a href="/client/check-in/{{_id}}"
+                                    class="btn btn-outline-success btn-block px-lg-1">Check-In</a>
+
+                            </li>
+                            <li class="nav-item dropdown mt-1 my-lg-0 mx-1">
+                                <a href="/client/delete/{{_id}}"
+                                    class="btn btn-outline-danger btn-block px-lg-1">Deletar</a>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
 
             </div>
-
-            <button class="navbar-toggler mr-1" type="button" data-toggle="collapse"
-                data-target="#clientEditingButtons{{_id}}" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="clientEditingButtons{{_id}}">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item dropdown mb-1 mt-2 my-lg-0 mx-1">
-                        <a href="/client/edit/{{_id}}" class="btn btn-outline-secondary btn-block">Editar</a>
-
-                    </li>
-                    <li class="nav-item dropdown my-1 my-lg-0 mx-1">
-                        <a href="/client/check-in/{{_id}}"
-                            class="btn btn-outline-success btn-block px-lg-1">Check-In</a>
-
-                    </li>
-                    <li class="nav-item dropdown mt-1 my-lg-0 mx-1">
-                        <a href="/client/delete/{{_id}}" class="btn btn-outline-danger btn-block px-lg-1">Deletar</a>
-
-                    </li>
-                </ul>
+            <div class="card-body pt-0 pb-0">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Cidade</th>
+                                <th scope="col">Sexo</th>
+                                <th scope="col">Idade</th>
+                                <th scope="col">Hospedagens</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{#if city}}
+                                    {{city}},
+                                    {{/if}}
+                                    {{#if state}}
+                                    {{state}}
+                                    {{/if}}</td>
+                                <td>{{sex}}</td>
+                                <td>{{getAge birthday}}</td>
+                                <td>{{checkIns.length}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-
-    </div>
-    <div class="card-body pt-0 pb-0">
-        <div class="table-responsive">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Cidade</th>
-                        <th scope="col">Sexo</th>
-                        <th scope="col">Idade</th>
-                        <th scope="col">Hospedagens</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{{#if city}}
-                            {{city}},
-                            {{/if}}
-                            {{#if state}}
-                            {{state}}
-                            {{/if}}</td>
-                        <td>{{sex}}</td>
-                        <td>{{getAge birthday}}</td>
-                        <td>{{checkIns.length}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-{{else}}
-<p>Você ainda não cadastrou nenhum cliente</p>
-{{/each}}
+        {{else}}
+        <p>Você ainda não cadastrou nenhum cliente</p>
+        {{/each}}
