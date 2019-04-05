@@ -10,10 +10,10 @@ const session = require('express-session')
 const helpers = require('./lib/helpers')
 const passport = require('passport')
 const app = express()
-const {ensureAuthenticated} = require('./lib/auth')
+const { ensureAuthenticated } = require('./lib/auth')
 
 // teste
-const {getNames} = require('./lib/bdayPeople')
+const { getNames } = require('./lib/bdayPeople')
 
 // Load routes
 const client = require('./routes/client')
@@ -43,7 +43,7 @@ app.engine('handlebars', hbs.engine)
 app.set('view engine', 'handlebars')
 
 // Body Parser Middleware
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 // Static Folder
@@ -77,21 +77,21 @@ app.use((req, res, next) => {
 })
 
 // Favicon Set Up
-app.use(favicon(path.join(__dirname,'public','images','favicon.ico')))
+app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')))
 
 // History Route
 app.get('/', ensureAuthenticated, (req, res) => {
     Client.find({
         user: req.user.id
     })
-        .sort({date: -1})
+        .sort({ date: -1 })
         .then(clients => {
             const bdayPeople = getNames(clients)
 
             if (bdayPeople) {
                 res.locals.birthday_msg = bdayPeople
             }
-            
+
             res.render('index', {
                 clients
             })
@@ -103,20 +103,47 @@ app.get('/search', ensureAuthenticated, (req, res) => {
     let queryParam = {
         user: req.user.id
     }
-    const regEx = new RegExp(req.query.search)
-    queryParam[req.query.type] = {
-        $regex: regEx,
-        $options: 'i'
-    }
 
-    Client.find(queryParam)
-        .lean()
-        .then(clients => {
-            res.render('index', {
-                clients
-            })
+    if (req.query.type === 'guest') {
+        Client.find({
+            user: req.user.id,
+            "checkIns.0": {
+                "$exists": true
+            }
         })
-        .catch(err => console.log(err))
+            .then(clients => {
+                res.render('index', {
+                    clients
+                })
+            })
+    } else if (req.query.type === 'potentialGuest') {
+        Client.find({
+            user: req.user.id,
+            "checkIns.0": {
+                "$exists": false
+            }
+        })
+            .then(clients => {
+                res.render('index', {
+                    clients
+                })
+            })
+    } else {
+        const regEx = new RegExp(req.query.search)
+        queryParam[req.query.type] = {
+            $regex: regEx,
+            $options: 'i'
+        }
+
+        Client.find(queryParam)
+            .lean()
+            .then(clients => {
+                res.render('index', {
+                    clients
+                })
+            })
+            .catch(err => console.log(err))
+    }
 })
 
 // About Route
